@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dolmisani.test.accesswrapper;
+package dolmisani.test.accesswrapper.tests;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,8 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import dolmisani.test.accesswrapper.SignatureToolkit;
 
 
 public class SignatureToolkitTest {

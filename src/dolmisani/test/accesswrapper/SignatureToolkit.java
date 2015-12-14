@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.lang.model.type.PrimitiveType;
 
 public class SignatureToolkit {
 
