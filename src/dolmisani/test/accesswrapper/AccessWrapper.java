@@ -51,12 +51,12 @@ public class  AccessWrapper<T> {
 	}
 	
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public <V> V invoke(String methodName, Object... params) {
 		
 		V value = null;
 		
-		Class[] types = new Class[params.length];
+		Class<?>[] types = new Class[params.length];
 		for (int i=0; i<types.length; i++) {
 			types[i] = params[i].getClass();
 		}
@@ -76,4 +76,31 @@ public class  AccessWrapper<T> {
 	}
 	
 
+	private Method findMethodHeuristic(Class<?> c, Class<?>... types) {
+		
+		Method[] methods = c.getDeclaredMethods();
+		
+		for (Method m : methods) {
+			
+			Class<?>[] p = m.getParameterTypes();
+		}
+		
+		
+		return null;
+	}
+	
+	private boolean isCompatibleSignature(Class<?>[] s1, Class<?>[] s2) {
+		
+		if (s1.length != s2.length) {
+			return false;
+		}
+		
+		for (int i=0; i<s1.length; i++) {
+			
+			//if (s1[i].equals(s2[i])) || (s2[i].isPrimitive() && s1[i].)
+		}
+		
+		return true;
+		
+	}
 }
