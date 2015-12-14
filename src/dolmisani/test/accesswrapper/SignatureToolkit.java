@@ -1,5 +1,6 @@
 package dolmisani.test.accesswrapper;
 
+import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,15 +36,59 @@ public class SignatureToolkit {
 	
 	public static Class<?> getWrapperType(Class<?> primitiveType) {
 		
-		if (primitiveType == null) {
-			throw new NullPointerException();
-		}
-		
 		if (!primitiveType.isPrimitive()) {
 			throw new InvalidParameterException();
 		}
 		
 		return WRAPPER_TYPES.get(primitiveType);
 	}
-
+	
+	
+	public static Class<?>[] getSignature(Object... params) {
+	
+		if (params == null) {
+			throw new NullPointerException();
+		}
+		
+		Class<?>[] signature = new Class<?>[params.length];
+		for (int i=0; i<signature.length; i++) {
+			signature[i] = params[i].getClass();
+		}
+		
+		return signature;
+	}
+	
+	
+	public static boolean isBoxedSignature(Class<?>[] signature, Method m) {
+		
+		m.setAccessible(true);
+		return isBoxedSignature(signature, m.getParameterTypes());
+	}
+	
+	
+	public static boolean isBoxedSignature(Class<?>[] s1, Class<?>[] s2) {
+		
+		if (s1.length != s2.length) {
+			return false;
+		}
+		
+		for (int i=0; i<s1.length; i++) {
+			if ((!s1[i].equals(s2[i])) || (!s1[i].equals(SignatureToolkit.getWrapperType(s2[i])))) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	public static Method findCompatibleMethod(Class<?>[] signature, Class<?> c) {
+		
+		for (Method m : c.getDeclaredMethods()) {
+			if (isBoxedSignature(signature, m)) {
+				return m;
+			}
+		}
+		
+		return null;
+	}
 }

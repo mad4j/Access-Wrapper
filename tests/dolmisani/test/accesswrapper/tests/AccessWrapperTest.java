@@ -89,4 +89,15 @@ public class AccessWrapperTest {
 		w.get("XXX");
 	}
 	
+	@Test
+	public void testMethodCallM1() {
+		
+		w.invoke("m1", Integer.valueOf(10));
+	}
+	
+	@Test
+	public void testMethodCallM2() {
+		
+		w.invoke("m1");
+	}
 }

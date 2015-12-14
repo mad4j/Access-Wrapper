@@ -56,51 +56,31 @@ public class  AccessWrapper<T> {
 		
 		V value = null;
 		
-		Class<?>[] types = new Class[params.length];
-		for (int i=0; i<types.length; i++) {
-			types[i] = params[i].getClass();
-		}
-		
+		Class<?>[] signature = SignatureToolkit.getSignature(params.length);
+			
 		Method m = null;
 		try {
 			
-			m = target.getClass().getDeclaredMethod(methodName, types);
+			m = target.getClass().getDeclaredMethod(methodName, signature);
+	
+		} catch (NoSuchMethodException e) {
+			
+			m = SignatureToolkit.findCompatibleMethod(signature, target.getClass());
+			if (m == null) {
+				throw new AccessException(e);
+			}
+			
+		} catch (SecurityException | IllegalArgumentException e) {
+			throw new AccessException(e);
+		}
+		
+		try {
 			m.setAccessible(true);
 			value = (V) m.invoke(target, params);
-			
-		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			throw new AccessException(e);
 		}
 		
 		return value;
-	}
-	
-
-	private Method findMethodHeuristic(Class<?> c, Class<?>... types) {
-		
-		Method[] methods = c.getDeclaredMethods();
-		
-		for (Method m : methods) {
-			
-			Class<?>[] p = m.getParameterTypes();
-		}
-		
-		
-		return null;
-	}
-	
-	private boolean isCompatibleSignature(Class<?>[] s1, Class<?>[] s2) {
-		
-		if (s1.length != s2.length) {
-			return false;
-		}
-		
-		for (int i=0; i<s1.length; i++) {
-			
-			//if (s1[i].equals(s2[i])) || (s2[i].isPrimitive() && s1[i].)
-		}
-		
-		return true;
-		
 	}
 }

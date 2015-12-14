@@ -8,6 +8,15 @@ public class DummyClass {
 	public DummyClass() {
 		// nothing to do
 	}
+
+	private void m1(int p) {
+		return;
+	}
+	
+	private void m2(Integer p) {
+		return;
+	}
+	
 	
 	public int getIntField() {
 		return intField;

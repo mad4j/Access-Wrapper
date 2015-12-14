@@ -5,6 +5,7 @@ package dolmisani.test.accesswrapper.tests;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 
 import org.junit.After;
@@ -112,4 +113,48 @@ public class SignatureToolkitTest {
 		SignatureToolkit.getWrapperType(Integer.class);
 	}
 	
+	@Test
+	public void testGetSignatureSinglePrimitiveParam() {
+
+		int p1 = 10;
+		Class<?>[] s = SignatureToolkit.getSignature(p1);
+		
+		assertEquals(1, s.length);
+		assertArrayEquals(new Class<?>[] { Integer.class }, s);
+	}
+	
+	@Test
+	public void testGetSignatureSingleWrapperParam() {
+
+		Integer p1 = 10;
+		Class<?>[] s = SignatureToolkit.getSignature(p1);
+		
+		assertEquals(1, s.length);
+		assertArrayEquals(new Class<?>[] { Integer.class }, s);
+	}
+	
+	@Test
+	public void testGetSignatureSingleObjectParam() {
+
+		String p1 = "TEST";
+		Class<?>[] s = SignatureToolkit.getSignature(p1);
+		
+		assertEquals(1, s.length);
+		assertArrayEquals(new Class<?>[] { String.class }, s);
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testGetSignatureNullValue() {
+		
+		SignatureToolkit.getSignature((Object[]) null);
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void testIsBoxedSignatureNullValue() {
+	
+		Class<?>[] s = null;
+		Method m = null;
+		
+		SignatureToolkit.isBoxedSignature(s, m);
+	}
 }
