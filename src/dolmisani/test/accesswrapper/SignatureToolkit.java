@@ -73,13 +73,12 @@ public class SignatureToolkit {
 		
 		for (int i=0; i<s1.length; i++) {
 			
-			System.out.println(i + ": " + s1[i] + ", " + s2[i]);
-			if ((!s1[i].equals(s2[i])) && (!s1[i].equals(SignatureToolkit.getWrapperType(s2[i])))) {
-				return false;
+			if ((s1[i].equals(s2[i])) || (s1[i].equals(SignatureToolkit.getWrapperType(s2[i])))) {
+				return true;
 			}
 		}
 		
-		return true;
+		return false;
 	}
 	
 	public static Method findCompatibleMethod(String methodName, Class<?>[] signature, Class<?> c) {
