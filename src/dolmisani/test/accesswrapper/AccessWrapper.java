@@ -65,7 +65,7 @@ public class  AccessWrapper<T> {
 	
 		} catch (NoSuchMethodException e) {
 			
-			m = SignatureToolkit.findCompatibleMethod(signature, target.getClass());
+			m = SignatureToolkit.findCompatibleMethod(methodName, signature, target.getClass());
 			if (m == null) {
 				throw new AccessException(e);
 			}

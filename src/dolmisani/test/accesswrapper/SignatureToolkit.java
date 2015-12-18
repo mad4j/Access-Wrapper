@@ -37,7 +37,7 @@ public class SignatureToolkit {
 	public static Class<?> getWrapperType(Class<?> primitiveType) {
 		
 		if (!primitiveType.isPrimitive()) {
-			throw new InvalidParameterException();
+			throw new InvalidParameterException(String.format("%s", primitiveType.getName()));
 		}
 		
 		return WRAPPER_TYPES.get(primitiveType);
@@ -61,7 +61,6 @@ public class SignatureToolkit {
 	
 	public static boolean isBoxedSignature(Class<?>[] signature, Method m) {
 		
-		m.setAccessible(true);
 		return isBoxedSignature(signature, m.getParameterTypes());
 	}
 	
@@ -73,7 +72,9 @@ public class SignatureToolkit {
 		}
 		
 		for (int i=0; i<s1.length; i++) {
-			if ((!s1[i].equals(s2[i])) || (!s1[i].equals(SignatureToolkit.getWrapperType(s2[i])))) {
+			
+			System.out.println(i + ": " + s1[i] + ", " + s2[i]);
+			if ((!s1[i].equals(s2[i])) && (!s1[i].equals(SignatureToolkit.getWrapperType(s2[i])))) {
 				return false;
 			}
 		}
@@ -81,10 +82,10 @@ public class SignatureToolkit {
 		return true;
 	}
 	
-	public static Method findCompatibleMethod(Class<?>[] signature, Class<?> c) {
+	public static Method findCompatibleMethod(String methodName, Class<?>[] signature, Class<?> c) {
 		
 		for (Method m : c.getDeclaredMethods()) {
-			if (isBoxedSignature(signature, m)) {
+			if ((m.getName().equals(methodName)) && isBoxedSignature(signature, m)) {
 				return m;
 			}
 		}

@@ -98,6 +98,6 @@ public class AccessWrapperTest {
 	@Test
 	public void testMethodCallM2() {
 		
-		w.invoke("m1");
+		w.invoke("m2", 10);
 	}
 }
