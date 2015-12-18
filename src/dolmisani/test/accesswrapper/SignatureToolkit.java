@@ -45,10 +45,6 @@ public class SignatureToolkit {
 	
 	
 	public static Class<?>[] getSignature(Object... params) {
-	
-		if (params == null) {
-			throw new NullPointerException();
-		}
 		
 		Class<?>[] signature = new Class<?>[params.length];
 		for (int i=0; i<signature.length; i++) {
