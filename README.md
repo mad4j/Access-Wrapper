@@ -41,3 +41,33 @@ Write a new value using `set()` method:
   System.out.println(w.get("value"));
   // output: 100
 ```
+
+
+### Accesing private methods
+
+The following class contains a private method (obviously, it is a trivial example).
+
+```java
+public class Dummy {
+  private int inc(int value) {
+    return value++;
+  }
+}
+```
+
+#### Setup
+Create an a new `AccessWrapper` instance that wraps an instance of `Dummy` class
+
+```java
+  Dummy d = new Dummy();
+  AccessWrapper w = new AccessWrapper(d);
+```  
+
+#### Calling internal behavior
+Call private methods using `invoke()`:
+
+```java
+  int value = w.invoke("inc", 10);
+  System.out.println(value);
+  // output: 11
+```
