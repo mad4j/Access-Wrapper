@@ -2,7 +2,9 @@
 Java convenience class to access private fields and methods using reflection.
 
 ## Breaking the rules
-Sometimes it may be useful access to the internal state (fields) or behavior (methods) of an object 
+Sometimes it may be useful to access the internal state (fields) or behavior (methods) of an object. In this case, it is not needed to break overall design in order to expose internal mechanisms. Reflection may be used to derogate design rules in a controlled manner.
+
+This a didactical example on how use Java reflection, but suggestions and contributions are welcome.
 
 
 ### Accesing private fields
