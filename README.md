@@ -1,4 +1,4 @@
-# Access-Wrapper
+![Access-Wrapper](resources/logo.png)
 Java convenience class to access private fields and methods using reflection.
 
 ##Breaking the rules
