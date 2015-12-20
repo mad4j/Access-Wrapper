@@ -6,6 +6,9 @@ Sometimes it may be useful to access the internal state (fields) or behavior (me
 
 This a didactical example on how use Java reflection, but suggestions and contributions are welcome.
 
+## See also:
+* [ReflectionTestUtils](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/util/ReflectionTestUtils.html)
+* [WhiteBox](https://code.google.com/p/powermock/)
 
 ### Accesing private fields
 
