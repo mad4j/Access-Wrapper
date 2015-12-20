@@ -1,0 +1,15 @@
+<project name="AccessWrapper" default="test" basedir=".">
+	
+	<description>
+		build and deploy script
+	</description>
+
+	
+	<target name="test">
+		<junit printsummary="yes" fork="yes" haltonfailure="yes">
+			<formatter type="plain"/>
+			<test name="dolmisani.test.accesswrapper.tests.AllTests"/>
+		</junit>
+	</target>
+
+</project>
