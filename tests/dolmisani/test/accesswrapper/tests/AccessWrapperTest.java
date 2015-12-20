@@ -11,30 +11,45 @@ import org.junit.Test;
 import dolmisani.test.accesswrapper.AccessException;
 import dolmisani.test.accesswrapper.AccessWrapper;
 
+
 public class AccessWrapperTest {
 
+	
 	private AccessWrapper<DummyClass> w;
 	private DummyClass d;
+	
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
+	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
 	}
 
+	
 	@Before
 	public void setUp() throws Exception {
 		
-		d = new DummyClass();
+		d = DummyClass.create();
 		w = new AccessWrapper<DummyClass>(d);
 	}
 
+	
 	@After
 	public void tearDown() throws Exception {
 	}
 
+	
+	@Test
+	public void testCostructorNoParams() {
+		
+		DummyClass d = AccessWrapper.create(DummyClass.class);
+		assertNotNull(d);
+	}
+	
+	
 	@Test
 	public void testSetInt() {
 		
@@ -42,12 +57,14 @@ public class AccessWrapperTest {
 		assertEquals(10, d.getIntField());
 	}
 
+	
 	@Test
 	public void testGetInt() {
 		
 		d.setIntField(10);
 		assertEquals(10, (int) w.get("intField"));
 	}
+	
 	
 	@Test
 	public void testSetString() {
@@ -56,6 +73,7 @@ public class AccessWrapperTest {
 		assertEquals("TEST", d.getStringField());
 	}
 	
+	
 	@Test
 	public void testGetString() {
 		
@@ -63,12 +81,14 @@ public class AccessWrapperTest {
 		assertEquals("TEST", w.get("stringField"));
 	}
 	
+	
 	@Test
 	public void testSetStringNullValue() {
 		
 		w.set("stringField", null);
 		assertEquals(null, d.getStringField());
 	}
+
 	
 	@Test
 	public void testGetStringNullValue() {
@@ -77,17 +97,20 @@ public class AccessWrapperTest {
 		assertEquals(null, (String) w.get("stringField"));
 	}
 	
+	
 	@Test(expected=AccessException.class)
 	public void testSetWrongField() {
 		
 		w.set("XXX", null);
 	}
 	
+	
 	@Test(expected=AccessException.class)
 	public void testGetWrongField() {
 		
 		w.get("XXX");
 	}
+	
 	
 	@Test
 	public void testMethodCallM0() {
@@ -101,6 +124,7 @@ public class AccessWrapperTest {
 		
 		w.invoke("m1", Integer.valueOf(10));
 	}
+	
 	
 	@Test
 	public void testMethodCallM2() {
