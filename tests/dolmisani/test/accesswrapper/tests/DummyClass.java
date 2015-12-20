@@ -9,6 +9,10 @@ public class DummyClass {
 		// nothing to do
 	}
 
+	private void m() {
+		return;
+	}
+	
 	private void m1(int p) {
 		return;
 	}
