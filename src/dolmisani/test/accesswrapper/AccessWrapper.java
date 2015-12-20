@@ -56,7 +56,7 @@ public class  AccessWrapper<T> {
 		
 		V value = null;
 		
-		Class<?>[] signature = SignatureToolkit.getSignature(params.length);
+		Class<?>[] signature = SignatureToolkit.getSignature(params);
 			
 		Method m = null;
 		try {
