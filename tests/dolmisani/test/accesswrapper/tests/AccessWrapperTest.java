@@ -51,6 +51,15 @@ public class AccessWrapperTest {
 	
 	
 	@Test
+	public void testContructionIntParam() {
+		
+		DummyClass d = AccessWrapper.create(DummyClass.class, 100);
+		assertNotNull(d);
+		assertTrue(d.getIntField() == 100);
+	}
+	
+	
+	@Test
 	public void testSetInt() {
 		
 		w.set("intField", 10);
