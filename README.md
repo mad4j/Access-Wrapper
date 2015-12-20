@@ -65,7 +65,7 @@ try {
 	f = d.getClass().getDeclaredField("stringField");
 	f.setAccessible(true);
 	
-	intValue = (int) f.get(d);
+	stringValue = (String) f.get(d);
 	
 } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
 	e.printStackTrace();
