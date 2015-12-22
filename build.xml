@@ -12,9 +12,16 @@
 		<mkdir dir="${basedir}/out-src"/>
 		<mkdir dir="${basedir}/out-tests"/>
 		
-		<javac srcdir="${basedir}/src" destdir="${basedir}/out-src"/>
+		<javac 
+			includeantruntime="false" 
+			srcdir="${basedir}/src" 
+			destdir="${basedir}/out-src"/>
 		
-		<javac srcdir="${basedir}/tests" destdir="${basedir}/out-tests">
+		<javac 
+			includeantruntime="false" 
+			srcdir="${basedir}/tests" 
+			destdir="${basedir}/out-tests">
+			
 			<classpath path="${basedir}/libs/junit-4.12.jar"/>
 			<classpath path="${basedir}/libs/hamcrest-core-1.3.jar"/>
 			<classpath path="${basedir}/out-src"/>

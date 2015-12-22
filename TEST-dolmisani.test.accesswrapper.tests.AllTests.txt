@@ -1,10 +1,10 @@
 Testsuite: dolmisani.test.accesswrapper.tests.AllTests
-Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,08 sec
+Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,078 sec
 
-Testcase: testGetStringNullValue took 0,003 sec
+Testcase: testGetStringNullValue took 0 sec
 Testcase: testSetWrongField took 0 sec
 Testcase: testSetStringNullValue took 0 sec
-Testcase: testContructionIntParam took 0,001 sec
+Testcase: testContructionIntParam took 0 sec
 Testcase: testConstructorNoParams took 0 sec
 Testcase: testSetString took 0 sec
 Testcase: testGetInt took 0 sec
@@ -13,14 +13,14 @@ Testcase: testMethodCallM0 took 0 sec
 Testcase: testMethodCallM1 took 0 sec
 Testcase: testMethodCallM2 took 0 sec
 Testcase: testSetInt took 0 sec
-Testcase: testGetWrongField took 0,001 sec
+Testcase: testGetWrongField took 0 sec
 Testcase: testGetWrapperTypeDouble took 0 sec
 Testcase: testGetWrapperTypeFloat took 0 sec
-Testcase: testGetSignatureSinglePrimitiveParam took 0,001 sec
+Testcase: testGetSignatureSinglePrimitiveParam took 0 sec
 Testcase: testGetWrapperTypeShort took 0 sec
 Testcase: testGetWrapperTypeNullValue took 0 sec
-Testcase: testGetSignatureSingleObjectParam took 0,001 sec
-Testcase: testGetWrapperTypeNotPrimitiveValue took 0,001 sec
+Testcase: testGetSignatureSingleObjectParam took 0 sec
+Testcase: testGetWrapperTypeNotPrimitiveValue took 0 sec
 Testcase: testGetWrapperTypeByte took 0 sec
 Testcase: testGetWrapperTypeChar took 0 sec
 Testcase: testGetWrapperTypeLong took 0 sec
@@ -29,4 +29,4 @@ Testcase: testIsBoxedSignatureNullValue took 0 sec
 Testcase: testGetWrapperTypeBoolean took 0 sec
 Testcase: testGetSignatureSingleWrapperParam took 0 sec
 Testcase: testGetSignatureNullValue took 0 sec
-Testcase: testGetWrapperTypeInt took 0,001 sec
+Testcase: testGetWrapperTypeInt took 0 sec
