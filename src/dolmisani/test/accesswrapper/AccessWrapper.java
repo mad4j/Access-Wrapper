@@ -17,14 +17,13 @@ public class  AccessWrapper<T> {
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	public static <T> T create(Class<T> c, Object... params) {
 		
 		T instance = null;
 		
 		Class<?>[] signature = SignatureToolkit.getSignature(params);
 		
-		Constructor<?> f = null;
+		Constructor<T> f = null;
 		try {
 			
 			f = c.getDeclaredConstructor(signature);
@@ -40,7 +39,7 @@ public class  AccessWrapper<T> {
 		try {
 			
 			f.setAccessible(true);	
-			instance = (T) f.newInstance(params);
+			instance = f.newInstance(params);
 			
 		} catch (SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			throw new AccessException(e);

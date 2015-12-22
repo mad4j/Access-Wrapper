@@ -84,14 +84,15 @@ public class SignatureToolkit {
 		return null;
 	}
 	
-	public static Constructor<?> findCompatibleConstructor( Class<?> c, Class<?>[] signature) {
+	
+	@SuppressWarnings("unchecked")
+	public static <T> Constructor<T> findCompatibleConstructor(Class<T> c, Class<?>[] signature) {
 		
 		for (Constructor<?> f : c.getDeclaredConstructors()) {
 			
 			if (isBoxedSignature(signature, f.getParameterTypes())) {
-				return f;
+				return (Constructor<T>) f;
 			}
-			
 		}
 
 		return null;
