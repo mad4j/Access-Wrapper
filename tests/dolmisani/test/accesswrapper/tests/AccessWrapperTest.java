@@ -43,7 +43,7 @@ public class AccessWrapperTest {
 
 	
 	@Test
-	public void testCostructorNoParams() {
+	public void testConstructorNoParams() {
 		
 		DummyClass d = AccessWrapper.create(DummyClass.class);
 		assertNotNull(d);
