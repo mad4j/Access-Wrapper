@@ -1,5 +1,6 @@
 package dolmisani.test.accesswrapper;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 import java.util.Collections;
@@ -55,12 +56,6 @@ public class SignatureToolkit {
 	}
 	
 	
-	public static boolean isBoxedSignature(Class<?>[] signature, Method m) {
-		
-		return isBoxedSignature(signature, m.getParameterTypes());
-	}
-	
-	
 	public static boolean isBoxedSignature(Class<?>[] s1, Class<?>[] s2) {
 		
 		if (s1.length != s2.length) {
@@ -77,14 +72,28 @@ public class SignatureToolkit {
 		return false;
 	}
 	
-	public static Method findCompatibleMethod(String methodName, Class<?>[] signature, Class<?> c) {
+	public static Method findCompatibleMethod(Class<?> c, String methodName, Class<?>[] signature) {
 		
 		for (Method m : c.getDeclaredMethods()) {
-			if ((m.getName().equals(methodName)) && isBoxedSignature(signature, m)) {
+			
+			if ((m.getName().equals(methodName)) && isBoxedSignature(signature, m.getParameterTypes())) {
 				return m;
 			}
 		}
 		
+		return null;
+	}
+	
+	public static Constructor<?> findCompatibleConstructor( Class<?> c, Class<?>[] signature) {
+		
+		for (Constructor<?> f : c.getDeclaredConstructors()) {
+			
+			if (isBoxedSignature(signature, f.getParameterTypes())) {
+				return f;
+			}
+			
+		}
+
 		return null;
 	}
 }

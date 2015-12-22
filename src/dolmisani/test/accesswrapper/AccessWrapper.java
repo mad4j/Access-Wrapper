@@ -17,19 +17,32 @@ public class  AccessWrapper<T> {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	public static <T> T create(Class<T> c, Object... params) {
 		
 		T instance = null;
 		
 		Class<?>[] signature = SignatureToolkit.getSignature(params);
 		
+		Constructor<?> f = null;
 		try {
-			Constructor<T> f = c.getDeclaredConstructor(signature);
-			f.setAccessible(true);
 			
-			instance = f.newInstance(params);
+			f = c.getDeclaredConstructor(signature);
 			
-		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+		} catch (NoSuchMethodException e) {
+			
+			f = SignatureToolkit.findCompatibleConstructor(c, signature);
+			if (f == null) {
+				throw new AccessException(e);
+			}
+		}
+		
+		try {
+			
+			f.setAccessible(true);	
+			instance = (T) f.newInstance(params);
+			
+		} catch (SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			throw new AccessException(e);
 		}
 		
@@ -41,6 +54,7 @@ public class  AccessWrapper<T> {
 		
 		return new AccessWrapper<T>(create(c, params));
 	}
+	
 	
 	@SuppressWarnings("unchecked")
 	public <V> V get(String fieldName) {
@@ -91,7 +105,7 @@ public class  AccessWrapper<T> {
 	
 		} catch (NoSuchMethodException e) {
 			
-			m = SignatureToolkit.findCompatibleMethod(methodName, signature, target.getClass());
+			m = SignatureToolkit.findCompatibleMethod(target.getClass(), methodName, signature);
 			if (m == null) {
 				throw new AccessException(e);
 			}

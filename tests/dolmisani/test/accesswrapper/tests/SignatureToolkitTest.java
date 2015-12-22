@@ -151,10 +151,7 @@ public class SignatureToolkitTest {
 	
 	@Test(expected=NullPointerException.class)
 	public void testIsBoxedSignatureNullValue() {
-	
-		Class<?>[] s = null;
-		Method m = null;
 		
-		SignatureToolkit.isBoxedSignature(s, m);
+		SignatureToolkit.isBoxedSignature(null, null);
 	}
 }
