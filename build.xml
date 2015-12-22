@@ -4,7 +4,18 @@
 		build and deploy script
 	</description>
 
-	<target name="test">
+	<target name="build">
+		<javac 
+			srcdir="${basedir}/src"
+			destdir="${basedir}/bin"
+		  />
+		<javac
+			srcdir="${basedir}/tests"
+			destdir="${basedir}/bin"
+		/>
+	</target>
+	
+	<target name="test" depends="build">
 		<junit printsummary="yes" fork="yes" haltonfailure="yes">
 			<classpath path="${basedir}/libs/junit-4.12.jar"/>
 			<classpath path="${basedir}/libs/hamcrest-core-1.3.jar"/>
