@@ -24,7 +24,7 @@ public class  AccessWrapper<T> {
 		Class<?>[] signature = SignatureToolkit.getSignature(params);
 		
 		try {
-			Constructor<T> f = c.getConstructor(signature);
+			Constructor<T> f = c.getDeclaredConstructor(signature);
 			f.setAccessible(true);
 			
 			instance = f.newInstance(params);
