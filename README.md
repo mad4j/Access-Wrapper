@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mad4j/Access-Wrapper.svg?branch=master)](https://travis-ci.org/mad4j/Access-Wrapper)
+
 ![Access-Wrapper](resources/logo.png)
 Java convenience class to access private fields and methods using reflection.
 
