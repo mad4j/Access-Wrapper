@@ -38,5 +38,9 @@
 			<test name="dolmisani.test.accesswrapper.tests.AllTests"/>
 		</junit>
 	</target>
+	
+	<target name="doc">
+	    <javadoc sourcepath="${basedir}/src" destdir="${basedir}/doc"/>
+	  </target>
 
 </project>
