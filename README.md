@@ -3,16 +3,16 @@
 ![Access-Wrapper](resources/logo.png)
 Java convenience class to access private fields and methods using reflection.
 
-##Breaking the rules
+# Breaking the rules
 Sometimes it may be useful to access the internal state (fields) or behavior (methods) of an object. In this case, it is not needed to break overall design in order to expose internal mechanisms. Reflection may be used to derogate design rules in a controlled manner.
 
 This a didactical example on how use Java reflection, but suggestions and contributions are welcome.
 
-### See also:
+## See also:
 * [Spring ReflectionTestUtils](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/util/ReflectionTestUtils.html)
 * [PowerMock WhiteBox](https://github.com/jayway/powermock)
 
-### Accesing private fields
+# Accesing private fields
 
 The following class contains a private field (obviously, it is a trivial example).
 
@@ -24,7 +24,7 @@ public class Dummy {
 
 By the means of `AccessWrapper` class it is possible to read and modify the value of private fields without the need to violate the original design.
 
-#### Setup
+## Setup
 Create an a new `AccessWrapper` instance that wraps an instance of `Dummy` class
 
 ```java
@@ -32,7 +32,7 @@ Create an a new `AccessWrapper` instance that wraps an instance of `Dummy` class
   AccessWrapper w = new AccessWrapper(d);
 ```  
 
-#### Read values  
+## Read values  
 Read `Dummy` internal state using `get()` method:
 
 ```java
@@ -40,7 +40,7 @@ Read `Dummy` internal state using `get()` method:
   // output: 10
 ```
 
-#### Modify values
+## Modify values
 Write a new value using `set()` method:
 
 ```java
@@ -49,7 +49,7 @@ Write a new value using `set()` method:
   // output: 100
 ```
 
-#### Using straightforward reflection
+## Using straightforward reflection
 Here an example on how access to private fields using straightforward reflection
 
 ```java
@@ -77,7 +77,7 @@ System.out.println(intValue);
 System.out.println(stringValue);
 ```
 
-### Accesing private methods
+# Accesing private methods
 
 The following class contains a private method (obviously, it is a trivial example).
 
@@ -89,7 +89,7 @@ public class Dummy {
 }
 ```
 
-#### Setup
+## Setup
 Create an a new `AccessWrapper` instance that wraps an instance of `Dummy` class
 
 ```java
@@ -97,7 +97,7 @@ Create an a new `AccessWrapper` instance that wraps an instance of `Dummy` class
   AccessWrapper w = new AccessWrapper(d);
 ```  
 
-#### Calling internal behavior
+## Calling internal behavior
 Call private methods using `invoke()`:
 
 ```java
@@ -106,3 +106,27 @@ Call private methods using `invoke()`:
   // output: 11
 ```
 
+## Accessing private constructors
+
+The following class contains a private constructor (obviously, it is a trivial example).
+
+```java
+public class Dummy {
+
+  private int value;
+
+  private Dummy(int value) {
+    this.value = value;
+  }
+}
+```
+
+## Setup
+
+Create a new instance of `Dummy` class using `AccessWrapper` facility.
+
+```java
+  Dummy d = null;
+  d = AccessWrapper.create(Dummy.class, 100);
+  assertNotNull(d);
+```
