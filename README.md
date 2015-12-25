@@ -118,6 +118,10 @@ public class Dummy {
   private Dummy(int value) {
     this.value = value;
   }
+  
+  public int geValue() {
+    return value;
+  }
 }
 ```
 
@@ -129,4 +133,5 @@ Create a new instance of `Dummy` class using `AccessWrapper` facility.
   Dummy d = null;
   d = AccessWrapper.create(Dummy.class, 100);
   assertNotNull(d);
+  assertTrue(100, d.getValue());
 ```
